@@ -2,24 +2,63 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
 int nulo;
+//candidatos
+int cand1; // thamires
+int cand2; // joao
+int cand3; // rosangela
+int cand4; // lucas
 
-int cand1;
+int totvotos; // = cand1+cand2+cand3+cand4;
 
-int cand2;
+//contador feminino e masculino
+int masc;
+int fem;
 
-int cand3;
-
-int cand4;
+//percentual
+float totpercent_feminino;
+float totpercent_masculino;
+float totpercent_nulo;
+float totpercent_cand1;
+float totpercent_cand2;
+float totpercent_cand3;
+float totpercent_cand4;
 
 double tot;
 
+int maiormenor()
+{
+}
+//-------------------------------------------------------
+
+int percentual()
+{
+	//Aqui calculamos a porcentagem de votos e apresentamos ao usuario conforme os requisitos da atividade
+	totpercent_feminino = fem * 100 / totvotos;
+	totpercent_masculino = masc * 100 / totvotos;
+	totpercent_nulo = nulo * 100 / totvotos;
+	totpercent_cand1 = cand1 * 100 / totvotos;
+	totpercent_cand2 = cand2 * 100 / totvotos;
+	totpercent_cand3 = cand3 * 100 / totvotos;
+	totpercent_cand4 = cand4 * 100 / totvotos;
+
+	printf("\n O Total de votos femininos em percentual e de: %.1f%%", totpercent_feminino);
+	printf("\n O Total de votos masculino em percentual e de: %.1f%%", totpercent_masculino);
+	printf("\n O Total de votos nulo/em branco em percentual e de: %.1f%%\n", totpercent_nulo);
+	printf("\n O Total de votos na candidata Thamires em percentual e de: %.1f%%\n", totpercent_cand1);
+	printf("\n O Total de votos no candidato Joao em percentual e de: %.1f%%\n", totpercent_cand2);
+	printf("\n O Total de votos na candidata Rosangela em percentual e de: %.1f%%\n", totpercent_cand3);
+	printf("\n O Total de votos na candidato Lucas em percentual e de: %.1f%%\n", totpercent_cand4);
+}
+//-------------------------------------------------------
 int votar()
 {
 
 	int candidato, confirmador;
 
-	system("clear");
+	system("cls");
 
 	printf("Para Voto NULO ou BRANCO, digite 111 no candidato.\n\nDigite o numero do candidato:");
 
@@ -31,9 +70,9 @@ int votar()
 
 	case 111:
 
-		system("clear");
+		system("cls");
 
-		printf("Seu voto C): NULO OU BRANCO \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
+		printf("Seu voto e: NULO OU BRANCO. \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
 
 		scanf("%d", &confirmador);
 
@@ -41,10 +80,9 @@ int votar()
 
 		{
 
-			// nulo++;
 			nulo = nulo + 1;
 
-			system("clear");
+			system("cls");
 
 			printf("Voto confirmado, obrigado por votar! \n\n\n");
 
@@ -62,7 +100,7 @@ int votar()
 
 		{
 
-			system("clear");
+			system("cls");
 
 			printf("Escolha incorreta, digite 1 para CONFIRMAR ou 2 para CANCELAR.");
 		}
@@ -72,8 +110,9 @@ int votar()
 		break;
 
 	case 666:
+		//mostrando o relat�rio final
+		totvotos = cand1 + cand2 + cand3 + cand4;
 
-		//apuracao(c1, c2, c3, c4);
 		printf("*****************************************\n");
 
 		printf("--------------ELEICOES 2021-------------\n");
@@ -82,21 +121,26 @@ int votar()
 
 		printf("\nThamires: %d VOTOS\n", cand1);
 
-		printf("\nJoC#o %d VOTOS\n", cand2);
+		printf("\nJoao %d VOTOS\n", cand2);
 
 		printf("\nRosangela: %d VOTOS\n", cand3);
 
 		printf("\nLucas: %d VOTOS\n", cand4);
 
 		printf("\nBRANCOS OU NULOS: %d VOTOS\n", nulo);
+		printf("\nTotal de votos e: %d Votos \n", totvotos);
+		printf("\nTotal de votos FEMININOS e: %d Voto(s)  \n", fem);
+		printf("\nTotal de votos MASCULINOS e: %d Voto(s)  \n", masc);
 
-		sleep(60);
+		percentual();
+
+		sleep(160);
 
 		break;
 
 	case 17:
 
-		system("clear");
+		system("cls");
 
 		printf("Vai votar em Thamires Gente boa? tem certeza? \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
 
@@ -106,10 +150,11 @@ int votar()
 
 		{
 
-			// c1++;
 			cand1 = cand1 + 1;
+			//contador de votos femininos
+			fem++;
 
-			system("clear");
+			system("cls");
 
 			printf("Voto confirmado, boa sorte!\n\n\n");
 
@@ -128,9 +173,10 @@ int votar()
 
 		{
 
-			system("clear");
+			system("cls");
 
-			printf("Escolha incorreta, digite 1 para CONFIRMAR ou 2 para CANCELAR.");
+			printf("Escolha incorreta, seu voto vai ser considerado nulo. Ate a proxima eleicao.");
+			nulo = nulo + 1;
 		}
 
 		votar();
@@ -139,7 +185,7 @@ int votar()
 
 	case 22:
 
-		system("clear");
+		system("cls");
 
 		printf("Vai votar em Joao? tem certeza? \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
 
@@ -149,10 +195,11 @@ int votar()
 
 		{
 
-			// c2++;
 			cand2 = cand2 + 1;
+			//contador de votos masculinos
+			masc++;
 
-			system("clear");
+			system("cls");
 
 			printf("Voto confirmado, boa sorte!\n\n\n");
 
@@ -166,14 +213,15 @@ int votar()
 			votar();
 		}
 
-		//caso o usuario digite a tecla errada na hora de confirmaC'C#o
+		//caso o usuario digite a tecla errada na hora de confirmacao
 		if ((confirmador != 1) && (confirmador != 2))
 
 		{
 
-			system("clear");
+			system("cls");
 
-			printf("Escolha incorreta, digite 1 para CONFIRMAR ou 2 para CANCELAR.");
+			printf("Escolha incorreta, seu voto vai ser considerado nulo. Ate a proxima eleicao.");
+			nulo = nulo + 1;
 		}
 
 		votar();
@@ -182,7 +230,7 @@ int votar()
 
 	case 31:
 
-		system("clear");
+		system("cls");
 
 		printf("Vai votar em Rosangela? tem certeza? \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
 
@@ -192,10 +240,11 @@ int votar()
 
 		{
 
-			// c3++;
 			cand3 = cand3 + 1;
+			//contador de votos femininos
+			fem++;
 
-			system("clear");
+			system("cls");
 
 			printf("Voto confirmado, boa sorte!\n\n\n");
 
@@ -209,14 +258,24 @@ int votar()
 			votar();
 		}
 
-		//caso o usuario digite a tecla errada na hora de confirmaC'C#o
+		//caso o usuario digite a tecla errada na hora de confirmacao
 		if ((confirmador != 1) && (confirmador != 2))
 
 		{
 
-			system("clear");
+			system("cls");
 
-			printf("Escolha incorreta, digite 1 para CONFIRMAR ou 2 para CANCELAR.");
+			printf("Escolha incorreta, seu voto vai ser considerado nulo. Ate a proxima eleicao.");
+			nulo = nulo + 1;
+			printf("\n------Candidatos dessa temporada-----\n");
+
+			printf("\nThamires gente boa - 17\n");
+
+			printf("\nJoao - 22\n");
+
+			printf("\nRosangela - 31\n");
+
+			printf("\nLucas - 38\n");
 		}
 
 		votar();
@@ -225,7 +284,7 @@ int votar()
 
 	case 38:
 
-		system("clear");
+		system("cls");
 
 		printf("Vai votar em Lucas? tem certeza? \nConfirma o voto? \n\n1-CONFIRMA\n2-CANCELAR\n\n");
 
@@ -235,10 +294,11 @@ int votar()
 
 		{
 
-			// c4++;
 			cand4 = cand4 + 1;
+			//contador de votos masculinos
+			masc++;
 
-			system("clear");
+			system("cls");
 
 			printf("Voto confirmado, boa sorte!\n\n\n");
 
@@ -263,16 +323,25 @@ int votar()
 
 		{
 
-			system("clear");
+			system("cls");
 
 			printf("Opcao invalida, digite 1 para CONFIRMAR ou 2 para CANCELAR.");
 		}
 
 	default:
 
-		system("clear");
+		system("cls");
 
 		printf("Candidato invalido, digite o numero do partido. \n\n");
+		printf("\n------Candidatos dessa temporada-----\n");
+
+		printf("\nThamires gente boa - 17\n");
+
+		printf("\nJoao - 22\n");
+
+		printf("\nRosangela - 31\n");
+
+		printf("\nLucas - 38\n");
 
 		sleep(3);
 	}
@@ -280,28 +349,7 @@ int votar()
 	votar();
 }
 
-int apuracao(int cand1, int cand2, int cand3, int cand4, int nulo)
-{
-
-	printf("*****************************************\n");
-
-	printf("--------------ELEICOES 2021-------------\n");
-
-	printf("*****************************************\n");
-
-	printf("\nThamires Gente boa: %d VOTOS\n", cand1);
-
-	printf("\nJoao %d VOTOS\n", cand2);
-
-	printf("\nRosangela: %d VOTOS\n", cand3);
-
-	printf("\nLucas: %d VOTOS\n", cand4);
-
-	printf("\nBRANCOS OU NULOS: %d VOTOS\n", nulo);
-
-	return 0;
-}
-
+//-------------------------------------------------------
 int main()
 {
 
@@ -321,9 +369,7 @@ int main()
 
 	printf("*****************************************\n");
 
-	printf("\n\nEleicoes do sofrimento.\n\nPara sair, ou ver o relatorio, digite 666.\nPara iniciar aperte qualquer tecla.\n\n");
-
-	getchar();
+	printf("\n\nPara sair, ou ver o relatorio, digite 666.\nPara iniciar aperte qualquer tecla.\n\n");
 
 	printf("\n------Candidatos dessa temporada-----\n");
 
@@ -334,18 +380,9 @@ int main()
 	printf("\nRosangela - 31\n");
 
 	printf("\nLucas - 38\n");
+	getchar();
 
 	votar();
 
 	return 0;
 }
-
-/*## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
-## Autor: Jose Matheus O. Cavalcante; ##
-## Concluido em: 18/06; ##
-## Declaro que este codigo foi elaborado por mim de forma individual e nao contem nenhum ##
-## trecho de cC3digo de outro colega ou de outro autor, tais como provindos de livros e ##
-## apostilas, e paginas ou documentos eletrC4nicos da Internet. Qualquer trecho de cC3digo ##
-## de outra autoria que nao a minha estC! destacado com uma citacao para o autor e a fonte ##
-## do codigo, e estou ciente que estes trechos nao serao considerados para fins de avaliacao. ##
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## # */
